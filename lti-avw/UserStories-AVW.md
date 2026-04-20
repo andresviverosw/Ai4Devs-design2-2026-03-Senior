@@ -300,25 +300,60 @@ This document applies the **senior Product Owner** story structure you specified
 
 ## 6. GitHub Project — tracking stories and tickets
 
-`gh` (GitHub CLI) is **not available** in this environment and no **`GITHUB_TOKEN`** is configured, so the project cannot be created programmatically from here. Use one of the following.
+### 6.1 Outcomes (completed setup)
 
-### Option A — GitHub UI (recommended, fastest)
+The backlog is tracked in a **GitHub Project (V2)** and **repository issues** on [andresviverosw/Ai4Devs-design2-2026-03-Senior](https://github.com/andresviverosw/Ai4Devs-design2-2026-03-Senior).
 
-1. Open the repository: [andresviverosw/Ai4Devs-design2-2026-03-Senior](https://github.com/andresviverosw/Ai4Devs-design2-2026-03-Senior).  
-2. Go to **Projects** → **New project** → choose **Board** or **Table**.  
-3. Name: **LTI AVW — MVP delivery**.  
-4. Link the project to this repository (or the org) per GitHub’s linking dialog.  
-5. Create custom fields (optional but useful):  
-   - **Story points** (number)  
-   - **T-shirt** (single select: S/M/L)  
-   - **Area** (single select: Backend / Frontend / AI / Infra)  
-6. Create parent items for **US-01 … US-05**, then child **Issues** for **T-01 … T-07** linked to US-01 (GitHub sub-issues / task lists, or markdown checklists in the parent issue).
+| Deliverable | Detail |
+|-------------|--------|
+| **Project** | **LTI AVW — MVP delivery** — [user project #1](https://github.com/users/andresviverosw/projects/1) (linked to this repo). |
+| **Issues** | **Enabled** in repo settings (required so `/issues/N` URLs exist for `gh project item-add` and normal issue tracking). |
+| **OAuth scopes** | [GitHub CLI](https://cli.github.com/) authenticated; **`project`** and **`read:project`** granted via `gh auth refresh -s project,read:project` so `gh project` commands work. |
+| **Backlog import** | **12 issues** created and attached to the project: **US-01 … US-05** (#1–#5) and **US-01 tickets T-01 … T-07** (#6–#12). Each issue body points to this document for full acceptance criteria and ticket text. |
 
-### Option B — GitHub CLI later (`gh`)
+**Issue index (quick reference)**
 
-After [installing GitHub CLI](https://cli.github.com/), authenticate (`gh auth login`), then you can script issue creation from this file’s tables and attach them to a Project V2. That gives you repeatable backlog imports for later sprints.
+| GitHub # | Item |
+|----------|------|
+| #1 | [US-01] AI-assisted job requisition draft from role brief |
+| #2 | [US-02] Approve requisition and publish to channels |
+| #3 | [US-03] Application intake with resume upload and parsing |
+| #4 | [US-04] Explainable AI screening against job rubric |
+| #5 | [US-05] Pipeline board, stage moves, internal comments |
+| #6 | [US-01][T-01] DB: tenancy and job draft tables |
+| #7 | [US-01][T-02] API: POST /api/v1/jobs from role brief |
+| #8 | [US-01][T-03] Async JD generation worker + LLM adapter |
+| #9 | [US-01][T-04] Prompt templates and guardrails for JD |
+| #10 | [US-01][T-05] Frontend: New requisition wizard (MVP) |
+| #11 | [US-01][T-06] Observability and audit for JD generation |
+| #12 | [US-01][T-07] QA harness and fixtures |
 
-### Suggested initial board columns
+**Repeatable CLI pattern for new work:** create an issue and add it to the same project in one step:
+
+```bash
+gh issue create -R andresviverosw/Ai4Devs-design2-2026-03-Senior \
+  -t "Title" -b "Body (link to lti-avw/UserStories-AVW.md as needed)" \
+  -p "LTI AVW — MVP delivery"
+```
+
+To attach an **existing** issue or PR to the project: `gh project item-add 1 --owner "@me" --url "<issue-or-PR-URL>"`.
+
+**Still optional:** custom project fields (**Story points**, **T-shirt**, **Area**), sub-issue links from T-01…T-07 to US-01, and board column names (see §6.3).
+
+### 6.2 Alternatives (if you redo or fork the setup)
+
+**Option A — GitHub UI**
+
+1. Open the repository → **Projects** → **New project** → Board or Table.  
+2. Name: **LTI AVW — MVP delivery**; link to the repo.  
+3. Add optional fields: Story points (number), T-shirt (S/M/L), Area (Backend / Frontend / AI / Infra).  
+4. Create issues for **US-01 … US-05** and **T-01 … T-07**, or use **Project → New item** for draft-only rows.
+
+**Option B — GitHub CLI only**
+
+Install [GitHub CLI](https://cli.github.com/), run `gh auth login`, grant **`project`** scopes, ensure **Issues** are on for the repo, then use `gh project create`, `gh project link`, `gh issue create` (with `-p` as above), or `gh project item-add` with real issue/PR URLs.
+
+### 6.3 Suggested initial board columns
 
 **Backlog → Ready → In Progress → In Review → Done**, with **WIP limit 2** on *In Progress* for the MVP team to protect throughput.
 
