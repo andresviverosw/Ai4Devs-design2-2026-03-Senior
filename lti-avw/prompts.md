@@ -102,3 +102,15 @@ This file records the full conversation that led to the creation of the **LTI-AV
 ---
 
 *End of session log.*
+
+---
+
+## Design2 module — User stories & backlog (April 2026)
+
+**Output document:** `UserStories-AVW.md`
+
+**Prompt used (paraphrased — Cursor agent execution):**
+
+> With context from `LTI-AVW.md` in `lti-avw/`, prepare implementation documentation: five INVEST user stories using the senior PO template (title, As a/I want/so that, three Given/When/Then criteria, S/M/L complexity, INVEST note), MVP prioritization with justification, product backlog table, expand the first story into technical work tickets, estimate tickets with Fibonacci story points + T-shirt + hours, single file `UserStories-AVW.md` in cloned repo `Ai4Devs-design2-2026-03-Senior` under `lti-avw/`. Attempt GitHub Project creation; document UI steps if CLI/token unavailable.
+
+**Conclusion:** Stories and backlog were derived from **LTI ATS** PRD content in `LTI-AVW.md`, not from the unrelated e-learning placeholder sometimes included in the same template text. GitHub Project creation was documented for manual setup because `gh` was not installed and `GITHUB_TOKEN` was not set in the environment.
